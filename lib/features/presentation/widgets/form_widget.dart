@@ -1,3 +1,5 @@
+// The file implements base form widget
+
 import 'package:flutter/material.dart';
 import 'package:flutter_weather/common/app_constants.dart';
 
@@ -22,8 +24,7 @@ class FormWidget extends StatelessWidget {
         fillColor: AppColors.darkenedBackgroundColor,
         filled: true,
         labelText: labelText,
-        labelStyle:
-            const TextStyle(fontSize: 14, color: AppColors.primaryColor),
+        labelStyle: AppStyles.mediumTextStyle,
         enabledBorder: _underlineInputBorder,
         focusedBorder: _underlineInputBorder,
       ),
@@ -32,6 +33,8 @@ class FormWidget extends StatelessWidget {
   }
 
   UnderlineInputBorder get _underlineInputBorder {
+    // The method returns a common `UnderlineInputBorder`
+
     return const UnderlineInputBorder(
       borderSide: BorderSide(
         width: 0,
