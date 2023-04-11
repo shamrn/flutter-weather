@@ -34,7 +34,7 @@ class DetailScreen extends StatelessWidget {
               height: 20,
             ),
             Text(
-              '22°',
+              '22°C',
               style: AppStyles.boldTextStyle
                   .copyWith(fontSize: 62, color: AppColors.primaryColor),
             ),
