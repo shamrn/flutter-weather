@@ -3,6 +3,7 @@ import 'package:flutter_weather/common/app_constants.dart';
 import 'package:flutter_weather/common/utils.dart';
 import 'package:flutter_weather/features/presentation/screens/city_input_screen.dart';
 import 'package:flutter_weather/features/presentation/screens/detail_screen.dart';
+import 'package:flutter_weather/features/presentation/screens/list_screen.dart';
 
 void main() {
   runApp(const WeatherApp());
@@ -22,6 +23,7 @@ class WeatherApp extends StatelessWidget {
       routes: {
         '/': (context) => const CityInputScreen(),
         '/detail': (context) => const DetailScreen(),
+        '/list': (context) => const ListScreen(),
       },
     );
   }

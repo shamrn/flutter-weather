@@ -16,7 +16,9 @@ class DetailScreen extends StatelessWidget {
             icon: const Icon(Icons.search),
             onPressed: () => Navigator.pushNamed(context, '/'),
           ),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.list)),
+          IconButton(
+              onPressed: () => Navigator.pushNamed(context, '/list'),
+              icon: const Icon(Icons.list)),
         ],
       ),
       body: SafeArea(
