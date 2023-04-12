@@ -27,8 +27,15 @@ class FormWidget extends StatelessWidget {
         labelStyle: AppStyles.mediumTextStyle,
         enabledBorder: _underlineInputBorder,
         focusedBorder: _underlineInputBorder,
+        errorBorder: _underlineInputBorder,
+        focusedErrorBorder: _underlineInputBorder,
       ),
-      onFieldSubmitted: (_) {},
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return AppTexts.validationRequiredFieldText;
+        }
+        return null;
+      },
     );
   }
 

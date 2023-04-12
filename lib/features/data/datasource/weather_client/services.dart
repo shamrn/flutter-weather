@@ -1,3 +1,5 @@
+// The file contains functions for data retrieval
+
 import 'package:flutter_weather/features/data/datasource/weather_client/client.dart';
 import 'package:flutter_weather/features/data/datasource/weather_client/exceptions.dart';
 import 'package:flutter_weather/features/data/datasource/weather_client/models.dart';
@@ -16,15 +18,16 @@ Future<CurrentWeatherDTO> getCurrentWeather({required String city}) async {
   }
 }
 
-Future<List<WeatherListDTO>> getWeatherList({required String city}) async {
+Future<List<WeatherListDTO>> getWeatherList(
+    {required String city, required int days}) async {
   // The function returns the list weather
 
-  WeatherClient weatherClient = WeatherClient(city: city, days: 3); // mock days
+  WeatherClient weatherClient = WeatherClient(city: city, days: days);
   await weatherClient.request();
   var result = weatherClient.result;
 
   if (result != null) {
-    List<WeatherListDTO> weathers = WeatherListDTO.factoryFromJson(result);
+    List<WeatherListDTO> weathers = WeatherListDTO.bulkMakeFromJson(result);
     return weathers;
   } else {
     throw WeatherFailedReceiveException();

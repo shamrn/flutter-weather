@@ -1,3 +1,5 @@
+// The file implements DTO models
+
 import 'dart:core';
 
 import 'package:flutter_weather/common/utils.dart';
@@ -6,7 +8,7 @@ class CurrentWeatherDTO {
   late String name;
   late double temp;
   late double wind;
-  late int humidity;
+  late double humidity;
 
   CurrentWeatherDTO(
       {required this.name,
@@ -20,7 +22,7 @@ class CurrentWeatherDTO {
     name = json['location']['name'];
     temp = current['temp_c'];
     wind = kilometerPerHourToMeterPerSecond(current['wind_kph']);
-    humidity = current['humidity'];
+    humidity = (current['humidity'] as int).toDouble();
   }
 }
 
@@ -38,10 +40,9 @@ class WeatherListDTO {
       required this.wind,
       required this.humidity});
 
-  static List<WeatherListDTO> factoryFromJson(Map<dynamic, dynamic> json) {
+  static List<WeatherListDTO> bulkMakeFromJson(Map<dynamic, dynamic> json) {
     String name = json['location']['name'];
     List<dynamic> weatherByDays = json['forecast']['forecastday'];
-
     return weatherByDays
         .map((day) => WeatherListDTO._fromJson(day, name))
         .toList();

@@ -2,6 +2,12 @@
 
 import 'package:flutter/material.dart';
 
+class AppSettings {
+  // The class contains settings for the project
+
+  static const int numberListWeather = 3;
+}
+
 class AppColors {
   // The class contains static color values
 
@@ -27,8 +33,15 @@ class AppStyles {
 class AppApi {
   // The class contains static data for API
 
-  static const String weatherUrl = 'api.weatherapi.com/';
-  static const String weatherApiVersion = 'v1/';
-  static const String weatherApiEndpoint = 'forecast.json/';
+  static const String weatherUrl = 'api.weatherapi.com';
+  static const String weatherApiVersion = 'v1';
+  static const String weatherApiEndpoint = 'forecast.json';
   static const String weatherApiKey = '4d8d0904eea84b3ba75144357231104';
+}
+
+class AppTexts {
+  // The class contains static texts
+
+  static const String errorNetworkMessage = 'Ошибка получения данных';
+  static const String validationRequiredFieldText = 'Обязательное поле';
 }
