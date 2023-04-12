@@ -1,3 +1,5 @@
+// The file implements exceptions
+
 class WeatherBaseException implements Exception {
   final String msg;
 

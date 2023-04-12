@@ -1,3 +1,5 @@
+// The file implements http client for weather service
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -10,7 +12,7 @@ class WeatherClient {
 
   static const String url = AppApi.weatherUrl;
   static const String endpoint =
-      AppApi.weatherApiVersion + AppApi.weatherApiEndpoint;
+      '${AppApi.weatherApiVersion}/${AppApi.weatherApiEndpoint}';
   static const String apiKey = AppApi.weatherApiKey;
 
   final String city;

@@ -1,3 +1,5 @@
+// The file contains functions for data retrieval
+
 import 'package:flutter_weather/features/data/datasource/weather_client/client.dart';
 import 'package:flutter_weather/features/data/datasource/weather_client/exceptions.dart';
 import 'package:flutter_weather/features/data/datasource/weather_client/models.dart';
