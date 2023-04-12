@@ -23,3 +23,12 @@ class AppStyles {
   static const TextStyle mediumTextStyle =
       TextStyle(color: AppColors.primaryTextColor, fontWeight: FontWeight.w500);
 }
+
+class AppApi {
+  // The class contains static data for API
+
+  static const String weatherUrl = 'api.weatherapi.com/';
+  static const String weatherApiVersion = 'v1/';
+  static const String weatherApiEndpoint = 'forecast.json/';
+  static const String weatherApiKey = '4d8d0904eea84b3ba75144357231104';
+}

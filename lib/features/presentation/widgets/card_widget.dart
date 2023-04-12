@@ -6,17 +6,17 @@ import 'package:flutter_weather/common/app_constants.dart';
 class CardWidget extends StatelessWidget {
   final double height;
   final String date;
-  final String degree;
+  final String temp;
   final String humidity;
-  final String windSpeed;
+  final String wind;
 
   const CardWidget({
     Key? key,
     required this.height,
     required this.date,
-    required this.degree,
+    required this.temp,
     required this.humidity,
-    required this.windSpeed,
+    required this.wind,
   }) : super(key: key);
 
   @override
@@ -48,7 +48,7 @@ class CardWidget extends StatelessWidget {
             Align(
               alignment: Alignment.topLeft,
               child: Text(
-                '$degree°',
+                '$temp°C',
                 style: AppStyles.boldTextStyle
                     .copyWith(fontSize: 48, color: AppColors.primaryColor),
               ),
@@ -62,7 +62,7 @@ class CardWidget extends StatelessWidget {
                   height: 5,
                 ),
                 _alignSmallText(
-                    text: 'Скорость ветра: $windSpeedмс',
+                    text: 'Скорость ветра: $windмс',
                     alignment: Alignment.topLeft)
               ],
             ),

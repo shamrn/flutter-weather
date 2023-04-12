@@ -49,3 +49,9 @@ MaterialColor convertHexToMaterialColor(Color color) {
   // The method returns the converted color from hex to material color
   return ConvertHexToMaterialColor(color: color).convert();
 }
+
+double kilometerPerHourToMeterPerSecond(double kph) {
+// The method converts kilometer per hour to meter per second
+
+  return double.parse((kph / 3.6).toStringAsFixed(2));
+}
