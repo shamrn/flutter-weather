@@ -1,3 +1,6 @@
+// The file contains the models
+
+
 class CurrentWeatherModel {
   String name;
   double temp;

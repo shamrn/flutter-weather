@@ -47,6 +47,7 @@ class ConvertHexToMaterialColor {
 
 MaterialColor convertHexToMaterialColor(Color color) {
   // The method returns the converted color from hex to material color
+
   return ConvertHexToMaterialColor(color: color).convert();
 }
 

@@ -1,3 +1,5 @@
+// The file contains a set of states for a current weather
+
 import 'package:flutter_weather/common/app_constants.dart';
 import 'package:flutter_weather/features/data/models/weather_models.dart';
 
