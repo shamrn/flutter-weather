@@ -1,13 +1,17 @@
 // The file implements the user's input of the city
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_weather/common/app_constants.dart';
+import 'package:flutter_weather/features/presentation/blocs/current_weather/current_weather_bloc.dart';
+import 'package:flutter_weather/features/presentation/blocs/current_weather/current_weather_event.dart';
 import 'package:flutter_weather/features/presentation/widgets/form_widget.dart';
 
 class CityInputScreen extends StatelessWidget {
-  static final TextEditingController _cityController = TextEditingController();
+  final TextEditingController _cityController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  const CityInputScreen({Key? key}) : super(key: key);
+  CityInputScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,16 +19,20 @@ class CityInputScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: AppStyles.primaryPadding,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              FormWidget(
-                  labelText: 'Введите город', textController: _cityController),
-              const SizedBox(
-                height: 30,
-              ),
-              _confirmButton(context),
-            ],
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FormWidget(
+                    labelText: 'Введите город',
+                    textController: _cityController),
+                const SizedBox(
+                  height: 30,
+                ),
+                _confirmButton(context),
+              ],
+            ),
           ),
         ),
       ),
@@ -36,7 +44,12 @@ class CityInputScreen extends StatelessWidget {
 
     return ElevatedButton(
       onPressed: () {
-        Navigator.pushNamed(context, '/detail');
+        if (_formKey.currentState!.validate()) {
+          context
+              .read<CurrentWeatherBloc>()
+              .add(CurrentWeatherLoadEvent(city: _cityController.text));
+          Navigator.pushNamed(context, '/detail');
+        }
       },
       style: ElevatedButton.styleFrom(
         foregroundColor: AppColors.canvasColor,
