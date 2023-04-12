@@ -25,7 +25,8 @@ dev_dependencies:
   # encourage good coding practices.
   flutter_lints: ^2.0.0
 
-
+  # A composable, multi-platform, Future-based API for HTTP requests.
+  http: ^0.13.5
 
 # The following section is specific to Flutter packages.
 flutter:
