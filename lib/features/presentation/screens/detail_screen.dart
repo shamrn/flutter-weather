@@ -6,6 +6,9 @@ import 'package:flutter_weather/common/app_constants.dart';
 import 'package:flutter_weather/features/data/models/weather_models.dart';
 import 'package:flutter_weather/features/presentation/blocs/current_weather/current_weather_bloc.dart';
 import 'package:flutter_weather/features/presentation/blocs/current_weather/current_weather_state.dart';
+import 'package:flutter_weather/features/presentation/blocs/list_weather/list_weather_bloc.dart';
+import 'package:flutter_weather/features/presentation/blocs/list_weather/list_weather_event.dart';
+import 'package:flutter_weather/features/presentation/widgets/network_error_widget.dart';
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({Key? key}) : super(key: key);
@@ -21,7 +24,18 @@ class DetailScreen extends StatelessWidget {
             onPressed: () => Navigator.pushNamed(context, '/'),
           ),
           IconButton(
-              onPressed: () => Navigator.pushNamed(context, '/list'),
+              onPressed: () {
+                CurrentWeatherState currentWeatherState =
+                    context.read<CurrentWeatherBloc>().state;
+
+                if (currentWeatherState is CurrentWeatherLoadedState) {
+                  context.read<WeatherListBloc>().add(WeatherListLoadEvent(
+                      city: currentWeatherState.weather.name));
+                  Navigator.pushNamed(context, '/list');
+                } else {
+                  // todo add snack bar
+                }
+              },
               icon: const Icon(Icons.list)),
         ],
       ),
@@ -31,7 +45,7 @@ class DetailScreen extends StatelessWidget {
         child: BlocBuilder<CurrentWeatherBloc, CurrentWeatherState>(
           builder: (context, state) {
             if (state is CurrentWeatherErrorState) {
-              return _sectionNetworkError(state.errorMessage);
+              return NetworkErrorWidget(errorMessage: state.errorMessage);
             } else if (state is CurrentWeatherLoadedState) {
               return _sectionCurrentWeather(
                 weather: state.weather,
@@ -81,15 +95,6 @@ class DetailScreen extends StatelessWidget {
           ],
         ),
       ],
-    );
-  }
-
-  Widget _sectionNetworkError(String errorMessage) {
-    return Center(
-      child: Text(
-        errorMessage,
-        style: AppStyles.boldTextStyle.copyWith(color: AppColors.primaryColor),
-      ),
     );
   }
 }

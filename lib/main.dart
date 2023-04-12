@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_weather/common/app_constants.dart';
 import 'package:flutter_weather/common/utils.dart';
 import 'package:flutter_weather/features/presentation/blocs/current_weather/current_weather_bloc.dart';
+import 'package:flutter_weather/features/presentation/blocs/list_weather/list_weather_bloc.dart';
 import 'package:flutter_weather/features/presentation/screens/city_input_screen.dart';
 import 'package:flutter_weather/features/presentation/screens/detail_screen.dart';
 import 'package:flutter_weather/features/presentation/screens/list_screen.dart';
@@ -20,6 +21,7 @@ class WeatherApp extends StatelessWidget {
       providers: [
         BlocProvider<CurrentWeatherBloc>(
             create: (context) => CurrentWeatherBloc()),
+        BlocProvider<WeatherListBloc>(create: (context) => WeatherListBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

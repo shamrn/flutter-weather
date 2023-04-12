@@ -40,10 +40,9 @@ class WeatherListDTO {
       required this.wind,
       required this.humidity});
 
-  static List<WeatherListDTO> factoryFromJson(Map<dynamic, dynamic> json) {
+  static List<WeatherListDTO> bulkMakeFromJson(Map<dynamic, dynamic> json) {
     String name = json['location']['name'];
     List<dynamic> weatherByDays = json['forecast']['forecastday'];
-
     return weatherByDays
         .map((day) => WeatherListDTO._fromJson(day, name))
         .toList();

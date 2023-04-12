@@ -2,22 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_weather/common/app_constants.dart';
+import 'package:flutter_weather/features/data/models/weather_models.dart';
 
 class CardWidget extends StatelessWidget {
   final double height;
-  final String date;
-  final String temp;
-  final String humidity;
-  final String wind;
+  final WeatherListModel weather;
 
-  const CardWidget({
-    Key? key,
-    required this.height,
-    required this.date,
-    required this.temp,
-    required this.humidity,
-    required this.wind,
-  }) : super(key: key);
+  const CardWidget({Key? key, required this.height, required this.weather})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +34,13 @@ class CardWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              date,
+              '${weather.datetime.day}/${weather.datetime.month}',
               style: AppStyles.mediumTextStyle.copyWith(fontSize: 18),
             ),
             Align(
               alignment: Alignment.topLeft,
               child: Text(
-                '$temp°C',
+                '${weather.temp}°C',
                 style: AppStyles.boldTextStyle
                     .copyWith(fontSize: 48, color: AppColors.primaryColor),
               ),
@@ -56,13 +48,13 @@ class CardWidget extends StatelessWidget {
             Column(
               children: [
                 _alignSmallText(
-                    text: 'Влажность: $humidity%',
+                    text: 'Влажность: ${weather.humidity}%',
                     alignment: Alignment.topLeft),
                 const SizedBox(
                   height: 5,
                 ),
                 _alignSmallText(
-                    text: 'Скорость ветра: $windмс',
+                    text: 'Скорость ветра: ${weather.wind}мс',
                     alignment: Alignment.topLeft)
               ],
             ),

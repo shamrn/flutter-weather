@@ -2,6 +2,12 @@
 
 import 'package:flutter/material.dart';
 
+class AppSettings {
+  // The class contains settings for the project
+
+  static const int numberListWeather = 3;
+}
+
 class AppColors {
   // The class contains static color values
 

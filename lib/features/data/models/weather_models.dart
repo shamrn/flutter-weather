@@ -11,14 +11,14 @@ class CurrentWeatherModel {
       required this.humidity});
 }
 
-class ListWeatherModel {
+class WeatherListModel {
   String name;
   DateTime datetime;
   double temp;
   double wind;
   double humidity;
 
-  ListWeatherModel(
+  WeatherListModel(
       {required this.name,
       required this.datetime,
       required this.temp,

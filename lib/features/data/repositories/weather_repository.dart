@@ -19,13 +19,15 @@ class CurrentWeatherRepository {
 class WeatherListRepository {
   // Class for get weather list
 
-  Future<List<ListWeatherModel>> getWeathers({required String city}) async {
-    List<WeatherListDTO> weathers = await getWeatherList(city: city);
+  Future<List<WeatherListModel>> getWeathers(
+      {required String city, required int days}) async {
+    List<WeatherListDTO> weathers =
+        await getWeatherList(city: city, days: days);
 
-    List<ListWeatherModel> resultWeather = [];
+    List<WeatherListModel> resultWeather = [];
 
     for (var weather in weathers) {
-      resultWeather.add(ListWeatherModel(
+      resultWeather.add(WeatherListModel(
           name: weather.name,
           datetime: weather.datetime,
           temp: weather.temp,
