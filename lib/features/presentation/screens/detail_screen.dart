@@ -9,6 +9,7 @@ import 'package:flutter_weather/features/presentation/blocs/current_weather/curr
 import 'package:flutter_weather/features/presentation/blocs/list_weather/list_weather_bloc.dart';
 import 'package:flutter_weather/features/presentation/blocs/list_weather/list_weather_event.dart';
 import 'package:flutter_weather/features/presentation/widgets/network_error_widget.dart';
+import 'package:flutter_weather/features/presentation/widgets/snack_bar_widget.dart';
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({Key? key}) : super(key: key);
@@ -28,12 +29,20 @@ class DetailScreen extends StatelessWidget {
                 CurrentWeatherState currentWeatherState =
                     context.read<CurrentWeatherBloc>().state;
 
+                // If the current weather data is loaded, open the screen with the list of
                 if (currentWeatherState is CurrentWeatherLoadedState) {
                   context.read<WeatherListBloc>().add(WeatherListLoadEvent(
                       city: currentWeatherState.weather.name));
                   Navigator.pushNamed(context, '/list');
-                } else {
-                  // todo add snack bar
+                }
+
+                // If the current weather data could not be loaded.
+                // Pressing the button shows the snack bar
+                else if (currentWeatherState is CurrentWeatherErrorState) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      errorSnackBarWidget(
+                          context: context,
+                          errorMessage: currentWeatherState.errorMessage));
                 }
               },
               icon: const Icon(Icons.list)),
@@ -42,7 +51,21 @@ class DetailScreen extends StatelessWidget {
       body: SafeArea(
           child: Padding(
         padding: AppStyles.primaryPadding,
-        child: BlocBuilder<CurrentWeatherBloc, CurrentWeatherState>(
+        child: BlocConsumer<CurrentWeatherBloc, CurrentWeatherState>(
+
+          listenWhen: (prevState, state) {
+            return prevState is! CurrentWeatherErrorState &&
+                state is CurrentWeatherErrorState;
+          },
+          listener: (context, state) {
+            if (state is CurrentWeatherErrorState) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  errorSnackBarWidget(
+                      context: context,
+                      errorMessage: state.errorMessage));
+            }
+          },
+
           builder: (context, state) {
             if (state is CurrentWeatherErrorState) {
               return NetworkErrorWidget(errorMessage: state.errorMessage);
