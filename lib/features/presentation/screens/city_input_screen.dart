@@ -7,11 +7,25 @@ import 'package:flutter_weather/features/presentation/blocs/current_weather/curr
 import 'package:flutter_weather/features/presentation/blocs/current_weather/current_weather_event.dart';
 import 'package:flutter_weather/features/presentation/widgets/form_widget.dart';
 
-class CityInputScreen extends StatelessWidget {
+
+class CityInputScreen extends StatefulWidget {
+  const CityInputScreen({Key? key}) : super(key: key);
+
+  @override
+  State<CityInputScreen> createState() => _CityInputScreenState();
+}
+
+class _CityInputScreenState extends State<CityInputScreen> {
+
   final TextEditingController _cityController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  CityInputScreen({Key? key}) : super(key: key);
+
+  @override
+  void dispose() {
+    _cityController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
