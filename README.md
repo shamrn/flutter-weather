@@ -8,8 +8,8 @@ on [Flutter framework](https://flutter.dev/).
 ## Summary
 
 Sources:
-- Mobile repository—
-- Backend API — [open weather map](https://openweathermap.org/api)
+- Mobile repository — [Github](https://github.com/shamrn/flutter-weather)
+- Backend API — [Open weather API](https://www.weatherapi.com/)
 
 ## Description
 #### The app shows the weather forecast.
