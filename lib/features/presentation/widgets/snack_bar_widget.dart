@@ -3,18 +3,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_weather/common/app_constants.dart';
 
-SnackBar errorSnackBarWidget(
-    {required BuildContext context, required String errorMessage}) {
+SnackBar snackBarWidget(
+    {required BuildContext context,
+    required String message,
+    required String pushRouteName,
+    required String actionLabel}) {
+  // Base snack bar widget
+  
   return SnackBar(
     content: Text(
-      errorMessage,
+      message,
       style: AppStyles.mediumTextStyle.copyWith(color: AppColors.primaryColor),
     ),
     action: SnackBarAction(
       onPressed: () {
-        Navigator.pop(context);
+        Navigator.pushNamed(context, pushRouteName);
       },
-      label: 'Назад',
+      label: actionLabel ,
     ),
   );
 }

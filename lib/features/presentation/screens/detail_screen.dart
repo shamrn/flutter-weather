@@ -40,9 +40,11 @@ class DetailScreen extends StatelessWidget {
                 // Pressing the button shows the snack bar
                 else if (currentWeatherState is CurrentWeatherErrorState) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                      errorSnackBarWidget(
+                      snackBarWidget(
                           context: context,
-                          errorMessage: currentWeatherState.errorMessage));
+                          message: currentWeatherState.errorMessage,
+                          pushRouteName: '/',
+                          actionLabel: 'Назад'));
                 }
               },
               icon: const Icon(Icons.list)),
@@ -60,9 +62,11 @@ class DetailScreen extends StatelessWidget {
           listener: (context, state) {
             if (state is CurrentWeatherErrorState) {
               ScaffoldMessenger.of(context).showSnackBar(
-                  errorSnackBarWidget(
+                  snackBarWidget(
                       context: context,
-                      errorMessage: state.errorMessage));
+                      message: state.errorMessage,
+                      pushRouteName: '/',
+                      actionLabel: 'Назад'));
             }
           },
 
