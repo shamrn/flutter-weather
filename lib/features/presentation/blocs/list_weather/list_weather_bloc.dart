@@ -27,7 +27,7 @@ class WeatherListBloc extends Bloc<WeatherListEvent, WeatherListState> {
           .getWeathers(city: event.city, days: numberListWeather);
 
       // The result is sorted by the `temp` field
-      weathers.sort((a, b) => b.temp.compareTo(a.temp));
+      weathers.sort((a, b) => a.temp.compareTo(b.temp));
 
       emit(WeatherListLoadedState(weathers: weathers));
     } on WeatherBaseException {
